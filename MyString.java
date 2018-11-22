@@ -14,6 +14,10 @@ public class MyString implements CharSequence, Comparable<CharSequence>
 
   public char charAt(int index)
   {
+    if(index > data.length || index < 0)
+    {
+      throw new IndexOutOfBoundsException();
+    }
     return data[index];
   }
 
@@ -24,6 +28,10 @@ public class MyString implements CharSequence, Comparable<CharSequence>
 
   public CharSequence subSequence(int begin, int end)
   {
+    if(begin <  0 || end < 0 || begin >= data.length || end >= data.length || begin > end)
+    {
+      throw new IndexOutOfBoundsException();
+    }
     // starting with empty String
     String output = "";
     for(int i = begin; i < end; i++)
