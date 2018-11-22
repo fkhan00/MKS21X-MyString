@@ -57,5 +57,14 @@ catch(IndexOutOfBoundsException e)
     System.out.println(" recieved: " + testCase.compareTo("hellos"));
     System.out.print("expected: 0");
     System.out.println(" recieved " + testCase.compareTo("hello"));
+    System.out.println("expected: Null pointer exception caught");
+    try
+    {
+    System.out.println(" recieved: " + testCase.compareTo(null));
+  }
+    catch(NullPointerException e)
+    {
+      System.out.println("recieved: null pointer exception caught" );
+    }
   }
 }
