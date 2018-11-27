@@ -28,7 +28,7 @@ public class MyString implements CharSequence, Comparable<CharSequence>
 
   public CharSequence subSequence(int begin, int end)
   {
-    if(begin <  0 || end < 0 || begin >= data.length || end >= data.length || begin > end)
+    if(begin <  0 || end < 0 || begin >= data.length || end > data.length || begin > end)
     {
       throw new IndexOutOfBoundsException();
     }
@@ -60,34 +60,36 @@ public class MyString implements CharSequence, Comparable<CharSequence>
     {
       throw new NullPointerException();
     }
-    if(power.length() > this.length())
-    {
-      // what greater than I think should mean
-      return 1;
-    }
-    if(power.length() < this.length())
-    {
-      return -1;
-      // what less than means
-    }
-    try
-    {
-      // its going to look for class cast exception
+
     for(int i = 0; i < power.length(); i++)
     {
-      //inequality
-      if(data[i] != this.data[i])
+      if(i == this.length())
       {
-        return 2;
-        // not too sure for appropriate output
+        break;
+      }
+      //inequality
+      if(data[i] != power.charAt(i))
+      {
+        if(power.charAt(i) < this.data[i])
+        {
+          return 1;
+        }
+        if (power.charAt(i) > this.data[i])
+        {
+          return -1;
+        }
       }
     }
-  }
-  catch (ClassCastException e)
-  {
-    throw new ClassCastException();
-    // it is then going to throw a class cast exception
-  }
+    //if it gets this far one array is a subset of the other
+    // must check their lengths to determine inequality
+    if(data.length > power.length())
+    {
+      return 1;
+    }
+    if(data.length < power.length())
+    {
+      return -1;
+    }
     // if it gets this far they must be equal
     return 0;
   }
